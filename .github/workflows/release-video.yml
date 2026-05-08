@@ -16,6 +16,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   generate-video:
     name: Generate Release Video
@@ -105,8 +109,21 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Wait for the release to be created by release.yml
-          sleep 10
+          set -e
+          TAG="${{ steps.version.outputs.tag }}"
+
+          # Poll for the release to be created by release.yml (max ~5 minutes)
+          attempt=0
+          max_attempts=30
+          until gh release view "$TAG" --json tagName --jq .tagName >/dev/null 2>&1; do
+            attempt=$((attempt + 1))
+            if [ "$attempt" -ge "$max_attempts" ]; then
+              echo "::warning::Release $TAG not created after $((max_attempts * 10))s — uploading video as artifact only"
+              exit 0
+            fi
+            echo "Release $TAG not yet visible (attempt $attempt/$max_attempts), waiting 10s..."
+            sleep 10
+          done
 
           # Find the video file
           VIDEO=$(find release-artifacts/video -name "*.mp4" -path "*release*" | head -1)
@@ -115,9 +132,8 @@ jobs:
           fi
 
           if [ -n "$VIDEO" ]; then
-            echo "Uploading $VIDEO to release ${{ steps.version.outputs.tag }}"
-            gh release upload "${{ steps.version.outputs.tag }}" "$VIDEO" \
-              --clobber 2>/dev/null || echo "Release not found yet — video saved as artifact"
+            echo "Uploading $VIDEO to release $TAG"
+            gh release upload "$TAG" "$VIDEO" --clobber
           else
-            echo "No video file found to upload"
+            echo "::warning::No video file found to upload"
           fi
