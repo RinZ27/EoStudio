@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "EoStudio"
-version = "2.0.0"
+version = "3.0.0"
 description = "EoStudio - Universal Development Platform with AI-Powered Code Editing, Design Suite, DevTools, and Real-Time Collaboration"
 readme = "README.md"
 license = {text = "MIT"}
