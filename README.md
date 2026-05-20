@@ -1,4 +1,13 @@
 # EoStudio
+
+<!-- begin: org-uniform badges (audit-2026-05) -->
+[![CI](https://github.com/embeddedos-org/EoStudio/actions/workflows/ci.yml/badge.svg)](https://github.com/embeddedos-org/EoStudio/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/embeddedos-org/EoStudio/actions/workflows/codeql.yml/badge.svg)](https://github.com/embeddedos-org/EoStudio/actions/workflows/codeql.yml)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/embeddedos-org/EoStudio/badge)](https://securityscorecards.dev/viewer/?uri=github.com/embeddedos-org/EoStudio)
+[![Release](https://img.shields.io/github/v/tag/embeddedos-org/EoStudio?label=release&sort=semver)](https://github.com/embeddedos-org/EoStudio/releases)
+[![License](https://img.shields.io/github/license/embeddedos-org/EoStudio)](LICENSE)
+<!-- end: org-uniform badges (audit-2026-05) -->
+
 <!-- BEGIN PLATFORMS -->
 _The release pipeline will populate per-platform downloads here on the first release._
 <!-- END PLATFORMS -->
@@ -312,6 +321,19 @@ All user-provided text is processed before being sent to LLM APIs:
 | [eApps](https://github.com/embeddedos-org/eApps) | Cross-platform apps — 38 C + LVGL apps |
 | [eosim](https://github.com/embeddedos-org/eosim) | Multi-architecture simulator |
 | **EoStudio** | **Design suite with LLM (this repo)** |
+
+<!-- begin: release-model (audit-2026-05) -->
+## Release model
+
+`master` is the line of development; every PR lands here. `release` is a
+rolling pointer to the latest released `vX.Y.Z` tag, updated automatically
+by [`.github/workflows/sync-release-branch.yml`](.github/workflows/sync-release-branch.yml).
+Tags are immutable.
+
+See [embeddedos-org/.github/STANDARDS.md](https://github.com/embeddedos-org/.github/blob/master/STANDARDS.md)
+for the org-wide tag scheme, release model, and the compliance frameworks
+every product targets.
+<!-- end: release-model (audit-2026-05) -->
 
 ## License
 
