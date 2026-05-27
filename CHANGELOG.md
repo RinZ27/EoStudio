@@ -1,5 +1,32 @@
 # Changelog
 
+## [3.1.0] - 2026-05-27
+
+### Added
+- **Multi-Model AI Router (`multi_model_router.py`)**: Seamless orchestration across GPT-4.1, GPT-4.1-mini, GPT-4.1-nano, Gemini 2.5 Flash, Claude 3.5 Sonnet, and local Llama3 via Ollama. Features automatic model selection, cost tracking, latency monitoring, and automatic fallback chains.
+- **AI Orchestrator (`orchestrator.py`)**: Multi-agent coordination (Planner, Executor, Reviewer, Tester, Debugger, Security, Documenter) with persistent, compressed long-term memory and Codebase RAG (Retrieval-Augmented Generation).
+- **Self-Healing Code Engine**: Part of the AI Orchestrator, automatically compiles/tests code, captures errors, and iteratively fixes them via AI until successful execution.
+- **Inline Code Completion (`inline_completion.py`)**: Cursor and GitHub Copilot-style ghost text completion engine. Context-aware (extracts imports, function signatures, and project context), features an LRU completion cache, and tracks acceptance rate telemetry.
+- **Agentic Coder (`agentic_coder.py`)**: Devin and Claude Code-style autonomous task execution loop with plan-execute-test-fix cycle, shell tool integration, and automatic git commits.
+- **Real-Time Collaboration (`realtime_collab.py`)**: Figma and CodeSandbox-style multi-user collaborative editing engine with Operational Transformation (OT) conflict resolution, user presence, active cursors, and revision history.
+- **Workspace Intelligence (`workspace_intelligence.py`)**: Semantic codebase search, cross-file symbol indexing, architecture health scoring (0-100), dead code detection, circular dependency analysis, and auto-doc generation.
+- **Voice-to-Code Interface (`voice_to_code.py`)**: Speech-to-code dictation, voice-driven editor actions (undo, save, run), design command interpreter, and AI voice query mode.
+- **Live Preview Engine (`live_preview.py`)**: Multi-framework hot-reload preview (React, Next.js, Flutter, Flask, FastAPI, HTML) with file watching, error overlays, and AI-powered error fix suggestions.
+- **Plugin Marketplace (`marketplace.py`)**: Built-in marketplace with one-click installation, dependency checking, auto-updates, and a curated catalog of 15+ plugins (AI, Themes, DevTools, Languages).
+- **Smart Diff Viewer (`smart_diff.py`)**: Side-by-side and unified diff visualization with AI-generated explanations, security scanning (12 OWASP patterns), performance regression detection, and PR description auto-generation.
+- **Security Hardening (`hardening.py`)**: Static Application Security Testing (SAST) with 12 built-in rules (SQL injection, command injection, path traversal, XSS, unsafe deserialization), secret/credential leak scanner, dependency vulnerability checker (pip-audit, npm audit), and HTML security report generator.
+- **Interactive TUI Dashboard (`dashboard.py`)**: Beautiful terminal dashboard with project stats, git status, AI model health, keyboard shortcut cheatsheet, and command palette (Ctrl+P style) with fuzzy search.
+- **Web Dashboard Server**: Local HTTP server serving a rich, responsive browser-based dashboard with real-time metrics and embedded AI Chat panel.
+- **Enhanced CLI Commands**: Added `agent`, `complete`, `workspace`, `plugin`, `voice`, `query`, and `dashboard` to the `eostudio` CLI.
+- **Comprehensive Unit Tests**: Added 53 new unit tests (`test_enhanced_features.py`) covering all new core modules with 100% pass rate.
+
+### Changed
+- Bumped version to `3.1.0` in `eostudio/__init__.py`.
+- Upgraded the CLI entry point (`eostudio/cli/main.py`) to seamlessly register and expose all new commands.
+- Enhanced the imports extraction pattern in `inline_completion.py` to extract precise module names for all supported languages.
+
+---
+
 ## [3.0.1] - 2026-05-16
 
 ### Production Release — Unified EmbeddedOS-org v3.0.1

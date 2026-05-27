@@ -1,10 +1,14 @@
 """CAD editor — split sketch/model view with parametric feature tree."""
 
+
 from __future__ import annotations
 
 import math
-import tkinter as tk
-import tkinter.ttk as ttk
+try:
+    import tkinter as tk
+    import tkinter.ttk as ttk
+except ImportError:
+    raise ImportError("tkinter not available — install python3-tk or run in GUI mode")
 from typing import Any, Dict, List, Optional, Tuple
 
 from eostudio.gui.widgets.canvas_2d import Canvas2D

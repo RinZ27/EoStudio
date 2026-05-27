@@ -1,0 +1,51 @@
+version: "3.9"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# EoStudio v3.1.0 — Docker Compose
+#
+# Modes:
+#   Online AI:  docker compose up eostudio
+#   Offline AI: docker compose --profile offline up
+# ─────────────────────────────────────────────────────────────────────────────
+
+services:
+  eostudio:
+    build: .
+    image: eostudio:3.1.0
+    container_name: eostudio
+    ports:
+      - "7777:7777"   # Web dashboard
+    environment:
+      - EOSTUDIO_LLM_PROVIDER=${EOSTUDIO_LLM_PROVIDER:-ollama}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - EOSTUDIO_OFFLINE=${EOSTUDIO_OFFLINE:-0}
+    volumes:
+      - ./workspace:/workspace
+      - eostudio-config:/root/.eostudio
+    command: ["python3", "-m", "eostudio.cli.main", "dashboard", "--web", "--port", "7777"]
+    depends_on:
+      ollama:
+        condition: service_healthy
+        required: false
+    restart: unless-stopped
+
+  # ── Fully Offline AI (Ollama + Llama3) ──────────────────────────────────
+  ollama:
+    image: ollama/ollama:latest
+    container_name: eostudio-ollama
+    profiles: ["offline"]
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-models:/root/.ollama
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  eostudio-config:
+  ollama-models:

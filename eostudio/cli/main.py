@@ -987,6 +987,27 @@ def release_video(
 
 
 # ---------------------------------------------------------------------------
+# Enhanced commands (v3.1+)
+# ---------------------------------------------------------------------------
+
+from eostudio.cli.enhanced_commands import (
+    agent_cmd,
+    complete_cmd,
+    workspace_group,
+    plugin_group,
+    voice_cmd,
+    query_cmd,
+)
+
+cli.add_command(agent_cmd, name="agent")
+cli.add_command(complete_cmd, name="complete")
+cli.add_command(workspace_group, name="workspace")
+cli.add_command(plugin_group, name="plugin")
+cli.add_command(voice_cmd, name="voice")
+cli.add_command(query_cmd, name="query")
+
+
+# ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
 

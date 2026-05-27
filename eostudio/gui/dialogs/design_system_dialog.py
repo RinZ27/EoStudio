@@ -1,12 +1,16 @@
 """Design System dialog — export and manage design tokens, themes, and component variants."""
 
+
 from __future__ import annotations
 
 import json
-import tkinter as tk
-import tkinter.ttk as ttk
-import tkinter.filedialog as filedialog
-import tkinter.messagebox as messagebox
+try:
+    import tkinter as tk
+    import tkinter.ttk as ttk
+    import tkinter.filedialog as filedialog
+    import tkinter.messagebox as messagebox
+except ImportError:
+    raise ImportError("tkinter not available — install python3-tk or run in GUI mode")
 from typing import Any, Dict, Optional
 
 from eostudio.core.ui_flow.design_system import DesignSystem

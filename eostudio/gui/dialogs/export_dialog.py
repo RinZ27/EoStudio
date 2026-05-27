@@ -1,10 +1,18 @@
 """Export dialog — format selection, options, output path, and progress bar."""
 
+
 from __future__ import annotations
 
-import tkinter as tk
-import tkinter.ttk as ttk
-from tkinter import filedialog
+try:
+    import tkinter as tk
+    import tkinter.ttk as ttk
+    from tkinter import filedialog
+except ImportError:
+    import sys as _sys, types as _types
+    _mod = _types.ModuleType(__name__)
+    _mod.GUI_AVAILABLE = False
+    _sys.modules[__name__] = _mod
+    raise ImportError(f"tkinter not available — {__name__} requires a display environment")
 from typing import Any, Callable, Dict, Optional
 
 

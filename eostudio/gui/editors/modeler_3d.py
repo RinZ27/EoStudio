@@ -1,7 +1,26 @@
 """3D Modeler editor for EoStudio."""
-from __future__ import annotations
 
-import tkinter as tk
+from __future__ import annotations
+# GUI_AVAILABLE guard — headless/server compatibility
+import sys as _sys
+try:
+    import tkinter as _tkinter_check
+    _TKINTER_OK = True
+except ImportError:
+    _TKINTER_OK = False
+if not _TKINTER_OK:
+    import types as _types
+    _mod = _types.ModuleType(__name__)
+    _mod.GUI_AVAILABLE = False
+    _sys.modules[__name__] = _mod
+    raise ImportError(f"tkinter not available — {__name__} requires a display environment")
+GUI_AVAILABLE = True
+
+
+try:
+    import tkinter as tk
+except ImportError:
+    raise ImportError("tkinter not available — install python3-tk or run in GUI mode")
 from typing import Any
 
 

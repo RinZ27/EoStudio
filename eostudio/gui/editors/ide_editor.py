@@ -4,7 +4,23 @@ Activity bar, sidebar, tabbed editor, bottom panel, status bar,
 command palette, find/replace, syntax highlighting, git integration.
 """
 
+
 from __future__ import annotations
+# GUI_AVAILABLE guard — headless/server compatibility
+import sys as _sys
+try:
+    import tkinter as _tkinter_check
+    _TKINTER_OK = True
+except ImportError:
+    _TKINTER_OK = False
+if not _TKINTER_OK:
+    import types as _types
+    _mod = _types.ModuleType(__name__)
+    _mod.GUI_AVAILABLE = False
+    _sys.modules[__name__] = _mod
+    raise ImportError(f"tkinter not available — {__name__} requires a display environment")
+GUI_AVAILABLE = True
+
 
 import datetime
 import fnmatch

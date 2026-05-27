@@ -1,8 +1,12 @@
 """Settings dialog for EoStudio."""
+
 from __future__ import annotations
 
-import tkinter as tk
-import tkinter.ttk as ttk
+try:
+    import tkinter as tk
+    import tkinter.ttk as ttk
+except ImportError:
+    raise ImportError("tkinter not available — install python3-tk or run in GUI mode")
 from typing import Any, Callable, Dict, Optional
 
 

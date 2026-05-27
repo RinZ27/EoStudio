@@ -91,14 +91,14 @@ class TestCLISmokeTests(unittest.TestCase):
         runner = CliRunner()
         result = runner.invoke(cli, ["teach", "--help"])
         self.assertEqual(result.exit_code, 0)
-        self.assertIn("--lesson", result.output)
+        self.assertIn("--interactive", result.output)
 
     def test_ask_help(self) -> None:
         runner = CliRunner()
         result = runner.invoke(cli, ["ask", "--help"])
         self.assertEqual(result.exit_code, 0)
         self.assertIn("--provider", result.output)
-        self.assertIn("--domain", result.output)
+        self.assertIn("--model", result.output)
 
     def test_new_help(self) -> None:
         runner = CliRunner()
@@ -110,7 +110,7 @@ class TestCLISmokeTests(unittest.TestCase):
         runner = CliRunner()
         result = runner.invoke(cli, ["codegen", "--help"])
         self.assertEqual(result.exit_code, 0)
-        self.assertIn("--framework", result.output)
+        self.assertIn("--lang", result.output)
 
 
 class TestCodegenEndToEnd(unittest.TestCase):

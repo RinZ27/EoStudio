@@ -1,9 +1,13 @@
 """Timeline widget — visual keyframe editor with draggable handles and easing preview."""
 
+
 from __future__ import annotations
 
-import tkinter as tk
-import tkinter.ttk as ttk
+try:
+    import tkinter as tk
+    import tkinter.ttk as ttk
+except ImportError:
+    raise ImportError("tkinter not available — install python3-tk or run in GUI mode")
 from typing import Any, Callable, Dict, List, Optional, Tuple
 
 from eostudio.core.animation.keyframe import EasingFunction, EASING_FUNCTIONS, KeyframeTrack

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "EoStudio"
-version = "3.0.1"
+version = "3.1.0"
 description = "EoStudio - Universal Development Platform with AI-Powered Code Editing, Design Suite, DevTools, and Real-Time Collaboration"
 readme = "README.md"
 license = {text = "MIT"}
@@ -23,6 +23,16 @@ dev = [
 ai = [
     "httpx>=0.25",
     "tiktoken>=0.5",
+    "openai>=1.30",
+]
+ai-local = [
+    "httpx>=0.25",
+]
+ai-full = [
+    "httpx>=0.25",
+    "tiktoken>=0.5",
+    "openai>=1.30",
+    "anthropic>=0.25",
 ]
 database = [
     "psycopg2-binary>=2.9",
@@ -34,10 +44,14 @@ cloud = [
     "httpx>=0.25",
     "keyring>=24.0",
 ]
+video = [
+    "edge-tts>=6.1",
+]
 all = [
     "Pillow>=10.0",
     "httpx>=0.25",
     "tiktoken>=0.5",
+    "openai>=1.30",
     "keyring>=24.0",
     "psycopg2-binary>=2.9",
     "pymysql>=1.1",
@@ -45,6 +59,9 @@ all = [
     "redis>=5.0",
     "pyyaml>=6.0",
     "websockets>=12.0",
+    "watchdog>=4.0",
+    "rich>=13.0",
+    "edge-tts>=6.1",
 ]
 
 [project.scripts]
