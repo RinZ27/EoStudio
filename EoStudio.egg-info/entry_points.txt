@@ -1,0 +1,2 @@
+[console_scripts]
+EoStudio = eostudio.cli.main:cli
