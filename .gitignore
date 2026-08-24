@@ -8,3 +8,6 @@ __pycache__/
 target/
 .pytest_cache/
 .DS_Store
+
+# Python build artifacts
+*.egg-info/
